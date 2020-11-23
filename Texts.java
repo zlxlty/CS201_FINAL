@@ -3,9 +3,12 @@
  * @Description: 
  * @Date: 2020-11-23 15:15:09
  * @LastEditors: Tianyi Lu
- * @LastEditTime: 2020-11-23 19:11:12
+ * @LastEditTime: 2020-11-23 19:44:45
  */
 
+/**
+ * A class that contains commonly used Strings.
+ */
 public class Texts {
 
     public static final String RESET = "\u001B[0m";
@@ -116,6 +119,11 @@ public class Texts {
                                      "\t2. You can let bots play against each other with customized parameters in\n"+
                                      "\t\"settings.txt\" and \"players.txt\" again by typing \"java Main -a\" in the console\n";
 
+    /**
+     * Returns the MACHINE string with specific color on opponents "BOT" head. 
+     * @param color the color of "BOT" head
+     * @return customized MACHINE string
+     */
     public static String getMachine(String color) {
         return "\n\t                          _____________________________                          \n"+
         "\t                          ||                          ||                         \n"+

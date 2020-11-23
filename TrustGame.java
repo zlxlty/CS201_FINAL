@@ -1,9 +1,9 @@
 /*
  * @Author: Tianyi Lu
- * @Description: 
+ * @Description: Class that contains essential methods for the game.
  * @Date: 2020-11-21 17:15:08
  * @LastEditors: Tianyi Lu
- * @LastEditTime: 2020-11-23 19:16:01
+ * @LastEditTime: 2020-11-23 20:12:05
  */
 
 import java.io.File;
@@ -27,24 +27,29 @@ public class TrustGame {
         botMap = new BotMap();
         settings = new HashMap<String, Integer>();
         pSettings = new HashMap<String, Integer>();
-        // rewards = new HashMap<String, Integer>();
 
         //Default settings
-        settings.put("numMatches", 10);
-        settings.put("numUpdates", 5);
-        settings.put("win1", 3);
-        settings.put("lose1", -1);
-        settings.put("win2", 2);
-        settings.put("lose2", 0);
+        settings.put("numMatches", 10); //Number of matches in one round that one bot will fight with another
+        settings.put("numUpdates", 5); //Number of loser/winner to be updated
+        settings.put("win1", 3); //Number of coins the bot gets if itself cheat and opponent cooperate
+        settings.put("lose1", -1); //Number of coins the bot gets if itself cooperate and opponent cheat
+        settings.put("win2", 2); //Number of coins the bot gets if both cooperate
+        settings.put("lose2", 0); //Number of coins the bot gets if both cheat
         
         if (fileName!=null) {
             fileToMap(fileName, settings);
         }
     }
 
+    /**
+     * Loads use to players with default or customized setting.
+     * If fileName is null, the method will load the default player setting.
+     * If fileName is given, the method will load players from the file. 
+     * @param fileName
+     */
     public void loadPlayers(String fileName) {
 
-        //Default Player Settings
+        //Default Player Setting
         pSettings.put("FollowerBot", 1);
         pSettings.put("MeanBot", 1);
         pSettings.put("NiceBot", 22);
@@ -62,7 +67,14 @@ public class TrustGame {
         }
     }
 
-    public void fileToMap(String fileName, Map<String, Integer> map) { 
+    /**
+     * Converts the information in txt file to a given Map.
+     * This is a helper method used by the constructor and loadPlayers.
+     * The key and value in txt file need to be separated by space.
+     * @param fileName source file name
+     * @param map map to be loaded into
+     */
+    private void fileToMap(String fileName, Map<String, Integer> map) { 
         try (Scanner fileInput = new Scanner(new File(fileName))) {
             while (fileInput.hasNextLine()) {
                 String newLine = fileInput.nextLine();
@@ -78,12 +90,18 @@ public class TrustGame {
         }
     }
 
+    /**
+     * Prints the score of every player(Bot) in the players list
+     */
     public void printScores() {
         System.out.println("\t--------------------------");
         players.forEach(p->System.out.println("\t"+p.getName()+": "+p.getScore()+" coins"));
         System.out.println("\t--------------------------");
     }
 
+    /**
+     * Prints the score and color of every kind of bot in the players list
+     */
     public void printPlayers() {
         List<String> seen = new LinkedList<String>();
         for (Bot player : players) {
@@ -94,6 +112,9 @@ public class TrustGame {
         }
     }
 
+    /**
+     * Prints the description of every kind of bot.
+     */
     public void introduceBots() {
         String[] bots = {"FollowerBot", 
                          "MeanBot",
@@ -117,11 +138,32 @@ public class TrustGame {
         
     }
 
+    /**
+     * Clears all the records of all the player in the players list
+     */
     public void clearAllRecords() {
         players.forEach(p->p.clearRecord());
     }
 
-    public boolean hasWinner() {
+    /**
+     * Gets the name of the Winner. Returns "Nobody" if there isn't
+     * a winner yet.
+     * @return
+     */
+    public String getWinner() {
+        if (hasWinner()) {
+            return players.get(0).getName();
+        } else {
+            return "Nobody";
+        }
+    }
+
+    /**
+     * Checks if there is only one kind of bot left in the players list.
+     * Helper method for getWinner
+     * @return true for has a winner
+     */
+    private boolean hasWinner() {
         if (players.size() == 0) {
             return false;
         }
@@ -137,18 +179,17 @@ public class TrustGame {
         return true;
     }
 
-    public String getWinner() {
-        if (hasWinner()) {
-            return players.get(0).getName();
-        } else {
-            return "Nobody";
-        }
-    }
-
+    /**
+     * @return the number of player in players list
+     */
     public int getSize() {
         return players.size();
     }
 
+    /**
+     * Pushes the color of every player in the players list in a stack.
+     * @return color stack
+     */
     public Stack<String> toStringStack() {
         Stack<String> colorStack = new Stack<String>();
         for (Bot player: players) {
@@ -160,6 +201,12 @@ public class TrustGame {
         return colorStack;
     }
 
+    /**
+     * Lets two bot with the given indexes in the players list match with each other.
+     * Updates the scores and records according to the results.
+     * @param index1 index of the first bot in the players list
+     * @param index2 index of the second bot in the players list
+     */
     public void match(int index1, int index2) {
         Bot player1 = players.get(index1);
         Bot player2 = players.get(index2);
@@ -189,6 +236,11 @@ public class TrustGame {
         player2.changeScore((int)settings.get(results.get(1)));
     }
 
+    /**
+     * Lets user and a specific kind of bot match with each other.
+     * @param botName the kind of bot to be compete with
+     * @return the total scores of the user
+     */
     public int matchUser(String botName) {
         int score;
         Scanner userInput = new Scanner(System.in);
@@ -209,6 +261,9 @@ public class TrustGame {
         return score;
     }
 
+    /**
+     * Lets every player in the players list match "numMatches" times with each other.
+     */
     public void matches() {
         for (int i = 0; i < players.size(); i++) {
             for (int j = i+1; j < players.size(); j++) {
@@ -217,6 +272,10 @@ public class TrustGame {
         }
     }
 
+    /**
+     * Eliminates some number of players with lowest scores, reproduce some
+     * number of players with highest scores.
+     */
     public void update() {
         Collections.shuffle(players);
         Collections.sort(players);
@@ -229,11 +288,18 @@ public class TrustGame {
         }
     }
 
+    /**
+     * Clear all console outputs.
+     */
     public static void clearConsole() {
         System.out.print("\033[H\033[2J");
         System.out.flush(); //clean the console for clearer outputs
     }
 
+    /**
+     * Pause the program for a given number of milliseconds.
+     * @param n number of milliseconds
+     */
     public void sleep(int n) {
         try {
             TimeUnit.MILLISECONDS.sleep(n);

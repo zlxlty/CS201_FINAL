@@ -1,13 +1,16 @@
 /*
  * @Author: Tianyi Lu
- * @Description: 
+ * @Description: SuperClass of all other bots
  * @Date: 2020-11-21 17:17:23
  * @LastEditors: Tianyi Lu
- * @LastEditTime: 2020-11-23 17:31:22
+ * @LastEditTime: 2020-11-23 20:18:23
  */
 
 import java.util.*;
 
+/**
+ * SuperClass of all other bots
+ */
 public class FollowerBot implements Bot {
 
     protected String name;
@@ -62,6 +65,9 @@ public class FollowerBot implements Bot {
         return selfRecords.get(key);
     }
 
+    /**
+     * Starts with cooperate, then copy opponent's previous move.
+     */
     @Override
     public int move(int key) {
         List<Integer> oppoRecord = oppoRecords.get(key);

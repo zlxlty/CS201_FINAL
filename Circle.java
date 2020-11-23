@@ -3,7 +3,7 @@
  * @Description: 
  * @Date: 2020-11-21 17:17:23
  * @LastEditors: Tianyi Lu
- * @LastEditTime: 2020-11-23 18:17:49
+ * @LastEditTime: 2020-11-23 20:19:06
  */
 import java.util.*;
 
@@ -20,6 +20,10 @@ class Circle {
         coordinates = new ArrayList<List<Integer>>();
     }
 
+    /**
+     * Draws a circle in the console with given colors in colorStack.
+     * @param colorStack Colors to be used
+     */
     public void draw(Stack<String> colorStack) {
         for (int i=1; i <= numPoints; i++) {
             long x = Math.round(radius * Math.cos(i*2*Math.PI/numPoints));
@@ -46,16 +50,3 @@ class Circle {
         }
     }
 }
-
-
-/*
-public static final String ANSI_RESET = "\u001B[0m";
-public static final String ANSI_BLACK = "\u001B[30m";
-public static final String ANSI_RED = "\u001B[31m";
-public static final String ANSI_GREEN = "\u001B[32m";
-public static final String ANSI_YELLOW = "\u001B[33m";
-public static final String ANSI_BLUE = "\u001B[34m";
-public static final String ANSI_PURPLE = "\u001B[35m";
-public static final String ANSI_CYAN = "\u001B[36m";
-public static final String ANSI_WHITE = "\u001B[37m";
-*/

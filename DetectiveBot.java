@@ -3,7 +3,7 @@
  * @Description: 
  * @Date: 2020-11-21 17:17:23
  * @LastEditors: Tianyi Lu
- * @LastEditTime: 2020-11-23 17:30:48
+ * @LastEditTime: 2020-11-23 20:16:45
  */
 
 import java.util.*;
@@ -16,6 +16,12 @@ public class DetectiveBot extends FollowerBot {
         color = Texts.BOLD; // Bold cyan high intensity
     }
 
+    /**
+     * Starts by 1, -1, 1, 1. If opponent cheat in first four step, use FollowerBot strategy.
+     * If opponent doesn't cheat in first four step. user MeanBot strategy.
+     * @param key
+     * @return
+     */
     @Override
     public int move(int key) {
         int[] startMove = {-1, 1, 1};

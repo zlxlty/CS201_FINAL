@@ -3,11 +3,9 @@
  * @Description: 
  * @Date: 2020-11-23 11:42:33
  * @LastEditors: Tianyi Lu
- * @LastEditTime: 2020-11-23 19:21:08
+ * @LastEditTime: 2020-11-23 20:13:49
  */
 import java.util.*;
-
-//Min 9 Max 65
 
 public class Main {
     public static void main(String[] args) {
@@ -30,6 +28,10 @@ public class Main {
         }
     }
 
+    /**
+     * Full game experience.
+     * @param userInput
+     */
     public static void storyMode(Scanner userInput) {
 
         TrustGame.clearConsole();
@@ -95,6 +97,9 @@ public class Main {
         System.out.println(Texts.END);
     }
 
+    /**
+     * Lets user fight with five kinds of bots.
+     */
     public static void competeMode() {
         TrustGame game = new TrustGame(null);
         String[] opponents = {"FollowerBot", 
@@ -129,6 +134,11 @@ public class Main {
         game.introduceBots();
     }
 
+    /**
+     * Lets different kinds of bot fight with each other under customized settings.
+     * @param userInput
+     * @param fileIn whether to load settings from files.
+     */
     public static void arenaMode(Scanner userInput, boolean fileIn) {
         String settingSrc = fileIn ? "settings.txt" : null;
         String playerSrc = fileIn ? "players.txt" : null;
@@ -177,6 +187,11 @@ public class Main {
         }
     }
 
+    /**
+     * Gets users decision and return 1 or -1
+     * @param userInput
+     * @return 1 or -1
+     */
     private static int getDecision(Scanner userInput) {
         String decision = "";
         while (!decision.equals("1") && !decision.equals("-1")){

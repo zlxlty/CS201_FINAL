@@ -3,7 +3,7 @@
  * @Description: 
  * @Date: 2020-11-21 17:17:23
  * @LastEditors: Tianyi Lu
- * @LastEditTime: 2020-11-23 17:31:11
+ * @LastEditTime: 2020-11-23 20:17:20
  */
 
 import java.util.*;
@@ -16,6 +16,11 @@ public class UserBot extends FollowerBot {
         color = Texts.RESET; //Bold White
     }
 
+    /**
+     * Bot that givens user input.
+     * @param key
+     * @return
+     */
     @Override
     public int move(int key) {
         Scanner userInput = new Scanner(System.in);
