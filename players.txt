@@ -1,0 +1,5 @@
+FollowerBot 5
+DetectiveBot 5
+GamblerBot 5
+NiceBot 4
+MeanBot 5

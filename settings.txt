@@ -1,0 +1,6 @@
+numMatches 10
+numUpdates 5
+win1 3
+lose1 -1
+win2 2
+lose2 0
