@@ -3,7 +3,7 @@
  * @Description: Class that contains essential methods for the game.
  * @Date: 2020-11-21 17:15:08
  * @LastEditors: Tianyi Lu
- * @LastEditTime: 2020-11-23 20:12:05
+ * @LastEditTime: 2020-11-23 22:10:30
  */
 
 import java.io.File;
@@ -163,7 +163,7 @@ public class TrustGame {
      * Helper method for getWinner
      * @return true for has a winner
      */
-    private boolean hasWinner() {
+    public boolean hasWinner() {
         if (players.size() == 0) {
             return false;
         }
@@ -251,6 +251,8 @@ public class TrustGame {
         for (int i = 0; i<7; i++) {
             System.out.print("\tYour Decision: ");
             match(0, 1);
+            System.out.println("\tOpponent Decision: "+
+                               players.get(1).getSelfRecords(0).get(i));
             printScores();
         }
 

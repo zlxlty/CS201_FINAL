@@ -3,7 +3,7 @@
  * @Description: 
  * @Date: 2020-11-23 15:15:09
  * @LastEditors: Tianyi Lu
- * @LastEditTime: 2020-11-23 19:44:45
+ * @LastEditTime: 2020-11-23 22:06:21
  */
 
 /**
@@ -71,8 +71,8 @@ public class Texts {
 
     public static final String CONTINUE = "\n\t(Enter anything to continue): ";
 
-    public static final String REPEAT = "\n\tNow, let's play for real. You'll be playing against 7 different opponents,\n"+
-                                          "\teach with their own game \"strategy\". With each opponent, you'll play 5 rounds.\n"+
+    public static final String REPEAT = "\n\tNow, let's play for real. You'll be playing against 5 different opponents,\n"+
+                                          "\teach with their own game \"strategy\". With each opponent, you'll play 7 rounds.\n"+
                                           "\tCan you trust them? Or rather... can they trust you?";
 
     public static final String FOLLOWER = "\tHello! I start with Cooperate, and afterwards,\n"+
@@ -91,7 +91,7 @@ public class Texts {
                                            "\tlike FollowerBot. If you never cheat back, I'll act\n"+
                                            "\tlike MeanBot, to exploit you. Elementary, my dear Watson.";
 
-    public static final String ARENA = "\tNow, let's let our bot players player against each other.\n"+
+    public static final String ARENA = "\tNow, let's let our bot players play against each other.\n"+
                                        "\tIt's a 3-step dance:\n"+
                                        BOLD+"\n\t1. Play a Tournament\n"+RESET+
                                        "\tLet them all play against each other for 10 times, and tally up their scores.\n"+
